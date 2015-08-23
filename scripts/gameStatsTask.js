@@ -71,7 +71,7 @@ function saveData()
     // Set the game name, since this field is often empty in the Steam API.
     gameSchemeJson.game.gameName = docs.name;
     // Add the appId, could be useful.
-    gameSchemeJson.game.appid = appId;
+    gameSchemeJson.game.appid = Number(appId);
 
     // Save the completed game schema + global stats + name
     var detailedgames = db.get('detailedgames');
@@ -80,9 +80,9 @@ function saveData()
     });
 
     // todo: only remove the game we searched for now - should be able to use the id (need index?)
-    detailedgames.remove({});
+    detailedgames.remove({appid:Number(appId)});
     detailedgames.insert(gameSchemeJson.game, {});
-    detailedgames.index('gameName', 1);
+    detailedgames.index('appid', 1);
 
     console.log("Saved data for " +gameSchemeJson.game.gameName);
 
