@@ -13,6 +13,18 @@ router.get('/', function(req, res, next) {
   });
 });
 
+
+router.get('/:appid', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('detailedgames');
+  var number = Number(req.params.appid);
+
+  collection.findOne({appid:number}, function(e, docs){
+    res.json(docs);
+  });
+});
+
+/*
 router.get('/:appid', function(req, res, next) {
   var db = req.db;
   var collection = db.get('games');
@@ -21,7 +33,7 @@ router.get('/:appid', function(req, res, next) {
   collection.findOne({appid:number}, function(e, docs){
     res.json(docs);
   });
-
 });
+*/
 
 module.exports = router;
