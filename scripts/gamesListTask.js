@@ -16,7 +16,7 @@ request('http://api.steampowered.com/ISteamApps/GetAppList/v2', function (error,
       gamesCollection.remove({});
       var result = gamesCollection.insert(json.applist.apps, {});
 
-      console.log("Saved " + json.applist.apps.length + " games.");
+      console.log("Saved " + result.nInserted + " games.");
 
       process.exit();
    }
