@@ -12,26 +12,13 @@ request('http://api.steampowered.com/ISteamApps/GetAppList/v2', function (error,
 
       var json = JSON.parse(body);
 
-      //console.log(json.applist.apps);
-
-      // Save them to the database.
       var gamesCollection = db.get('games');
       gamesCollection.remove({});
       var result = gamesCollection.insert(json.applist.apps, {});
 
-      console.log(result);
-      //gamesCollection.index('appid', 1);
+      console.log("Saved " + json.applist.apps.length + " games.");
 
-     console.log("Saved " + json.applist.apps.length + " games.");
-
-     json.applist.apps.forEach(function(item){
-       if(item.appid == 550)
-       {
-         console.log("found lfd");
-       }
-     });
-
-     process.exit();
+      process.exit();
    }
 
 });

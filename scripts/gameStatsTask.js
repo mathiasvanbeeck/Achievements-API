@@ -2,7 +2,7 @@ var request = require('request');
 var monk = require('monk');
 var db = monk('localhost:27017/achievementsapi')
 var gamesCollection = db.get('games');
-var detailedGamesCollection = db.get('detailedGamesCollection');
+var detailedGamesCollection = db.get('detailedGames');
 
 
 /*
